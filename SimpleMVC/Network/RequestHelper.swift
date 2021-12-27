@@ -5,15 +5,11 @@
 //  Created by 𝙷𝚘𝚜𝚎𝚒𝚗 𝙹𝚊𝚗𝚊𝚝𝚒  on 12/27/21.
 //
 
-
 import Foundation
-import UIKit
-import AlamofireImage
-public class RequestHelper {
-    
-    public static var sheared = RequestHelper()
-    
-    func dataRequest<T: Decodable>(with url: String, objectType: T.Type, completion: @escaping (Result<T>) -> Void) {
+
+public struct RequestHelper {
+        
+   static func dataRequest<T: Decodable>(with url: String, objectType: T.Type, completion: @escaping (Result<T>) -> Void) {
         let dataURL = URL(string: url)!
         let session = URLSession.shared
         let request = URLRequest(url: dataURL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60)
@@ -38,13 +34,6 @@ public class RequestHelper {
         })
         task.resume()
     }
-    
-    func fetchImageFromURL(UIImageView : UIImageView , stringURL : String) {
-        let urlFetch = URL(string: stringURL)
-        UIImageView.af.setImage(withURL: urlFetch!)
-    }
-    
-    
 }
 
 enum APPError: Error {
